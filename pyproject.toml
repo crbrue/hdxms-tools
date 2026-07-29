@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdx-ms-tools"
+version = "1.2.0"
+description = "Reproducible HX Examiner processing with dual BE/no-BE SI exports, provenance, peptide QC, consensus analysis, and structure coloring."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Chris B."}]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "matplotlib>=3.7",
+  "PyYAML>=6.0",
+  "pyteomics>=4.7,<6",
+]
+
+[project.optional-dependencies]
+stats = ["scipy>=1.10"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+hdxms = "hdxms.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

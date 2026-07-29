@@ -1,0 +1,100 @@
+# Input file for: hdxms run workflow_manifest.yaml
+# Relative paths are resolved from this manifest's directory.
+base_dir: .
+output_dir: hdxms_output
+
+# Standard FD normalization is always performed.
+# Turn this on only when sample and FD-control D2O fractions differ.
+apply_empirical_correction: false
+sample_d2o_fraction: 0.75
+fd_d2o_fraction: 0.75
+
+dpi: 600
+offset: 0
+stat: mean
+mincov: 1
+smooth: 5
+
+fully_deuterated: exports/A762_FDH2_09222026.csv
+
+# Any number of datasets may be defined. A timepoint can be its own dataset.
+datasets:
+  apo_10s:
+    title: "Apo, 10 s"
+    files:
+      - exports/apo_10s_rep1.csv
+      - exports/apo_10s_rep2.csv
+      - exports/apo_10s_rep3.csv
+
+  drug_a_10s:
+    title: "Drug A, 10 s"
+    files:
+      - exports/drugA_10s_rep1.csv
+      - exports/drugA_10s_rep2.csv
+      - exports/drugA_10s_rep3.csv
+
+  drug_b_10s:
+    title: "Drug B, 10 s"
+    files:
+      - exports/drugB_10s_rep1.csv
+      - exports/drugB_10s_rep2.csv
+      - exports/drugB_10s_rep3.csv
+
+  drug_a_100s:
+    title: "Drug A, 100 s"
+    files:
+      - exports/drugA_100s_rep1.csv
+      - exports/drugA_100s_rep2.csv
+      - exports/drugA_100s_rep3.csv
+
+zoom_regions:
+  - {name: HD, start: 678, end: 787}
+  - {name: ART, start: 788, end: 1014}
+
+# Any number of pairwise comparisons may be defined.
+# pctD_diff is always dataset_a minus dataset_b.
+comparisons:
+  - name: drug_a_vs_apo_10s
+    dataset_a: drug_a_10s
+    dataset_b: apo_10s
+    title: "PARP1 Δ%HDX — Drug A − Apo, 10 s"
+
+  - name: drug_b_vs_apo_10s
+    dataset_a: drug_b_10s
+    dataset_b: apo_10s
+    title: "PARP1 Δ%HDX — Drug B − Apo, 10 s"
+
+  - name: drug_a_100s_vs_10s
+    dataset_a: drug_a_100s
+    dataset_b: drug_a_10s
+    title: "PARP1 Δ%HDX — Drug A, 100 s − 10 s"
+
+# Matched individual replicate differences are generated automatically for every
+# comparison. File order defines matching: first file vs first file, second vs
+# second, etc. Compared datasets must therefore contain equal replicate counts.
+# Outputs are written under:
+# comparisons/<comparison_name>/ind_diff_plots/
+
+
+# Diagnostic peptide-level QC. These flags do not automatically exclude peptides.
+quality_control:
+  enabled: true
+  corrected_occupancy:
+    warning: 1.00
+    severe: 1.10
+  replicate_sd_deuterons:
+    warning: 0.50
+    severe: 1.00
+  scoring:
+    corrected_occupancy_warning_penalty: 10
+    corrected_occupancy_severe_penalty: 30
+    high_sd_penalty: 10
+    severe_sd_penalty: 30
+    one_missing_replicate_penalty: 15
+    multiple_missing_replicates_penalty: 30
+    missing_fd_penalty: 30
+    invalid_fd_penalty: 20
+  categories:
+    excellent_min: 90
+    acceptable_min: 75
+    review_min: 50
