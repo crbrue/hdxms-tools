@@ -219,7 +219,7 @@ def test_manifest_workflow_generates_dual_comparisons_and_structure_outputs(
     # The workflow should request one render per comparison branch.
     assert len(pymol_calls) == 2
     for mode, command in zip(("no_be", "be"), pymol_calls):
-        assert command[1:3] == ["-cq", str(Path(workflow.__file__).with_name("pymol_script.py"))]
+        assert command[1:4] == ["-cq", "-r", str(Path(workflow.__file__).with_name("pymol_script.py"))]
         assert "--protein-only" in command
         assert command[command.index("--chain-filter") + 1] == "A"
         consensus_arg = Path(command[command.index("--value-col") - 1])

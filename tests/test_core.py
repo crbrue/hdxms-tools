@@ -32,8 +32,8 @@ def test_illustrator_full_and_zoom_exports(tmp_path):
     assert 'height="0.0751in"' in text
     assert 'preserveAspectRatio="none"' in text
     assert 'fill="#ffffff" stroke="none"' in text
-    assert 'fill="#4478bb"' in text
-    assert 'fill="#ed2024"' in text
+    assert 'fill="#6699FF"' in text
+    assert 'fill="#F27373"' in text
 
     zoom = tmp_path / "zoom.svg"
     export_consensus_zoom_manual_fixed_size(str(csv), 2, 3, str(zoom))

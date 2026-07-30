@@ -12,5 +12,7 @@ dependencies:
   - setuptools
   - wheel
   - pytest>=8
+#Visualization
+  - pymol-open-source
   - pip:
       - -e .
