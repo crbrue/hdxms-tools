@@ -1,0 +1,42 @@
+# MADP HDX Palette v1.0
+open "/home/cbrue/hdx-ms-tools/entpip6_consensus_structure_bfactor.pdb"
+hide
+show protein cartoons
+color protein #BFBFBF target c
+show nucleic atoms
+style nucleic stick
+color nucleic byelement
+show ligand atoms
+style ligand stick
+color ligand byelement
+color /C:769-770 #3366E6 target c
+color /C:678-688 #6699FF target c
+color /C:710-713 #6699FF target c
+color /C:771-778 #6699FF target c
+color /B:324-338 #A6BFFF target c
+color /B:345 #A6BFFF target c
+color /C:676-677 #A6BFFF target c
+color /C:689-709 #A6BFFF target c
+color /C:795-799 #A6BFFF target c
+color /C:811 #A6BFFF target c
+color /C:846-896 #A6BFFF target c
+color /A:6-35 #595959 target c
+color /A:39-91 #595959 target c
+color /A:109-113 #595959 target c
+color /A:117-201 #595959 target c
+color /B:224-304 #595959 target c
+color /B:309-323 #595959 target c
+color /B:339-344 #595959 target c
+color /B:346-359 #595959 target c
+color /C:531-575 #595959 target c
+color /C:584-642 #595959 target c
+color /C:662-675 #595959 target c
+color /C:714-764 #595959 target c
+color /C:779-794 #595959 target c
+color /C:800-810 #595959 target c
+color /C:812-845 #595959 target c
+color /C:897-985 #595959 target c
+color /C:990-1011 #595959 target c
+set bgColor white
+lighting soft
+view protein

@@ -1,0 +1,94 @@
+name: MADP HDX Palette
+version: "1.0"
+description: >
+  Canonical discrete palette for MADP HDX-MS consensus visualizations.
+  Negative values indicate protection, positive values indicate deprotection,
+  and unmapped residues indicate no experimental coverage.
+
+units: percent_deuteration_difference
+
+bins:
+  - id: hdx_blue3
+    label: strong_protection
+    display_label: "< -30"
+    lower: null
+    lower_inclusive: false
+    upper: -30.0
+    upper_inclusive: false
+    rgb_255: [51, 102, 230]
+    rgb_fraction: [0.2, 0.4, 0.9]
+    hex: "#3366E6"
+
+  - id: hdx_blue2
+    label: moderate_protection
+    display_label: "-30 to < -15"
+    lower: -30.0
+    lower_inclusive: true
+    upper: -15.0
+    upper_inclusive: false
+    rgb_255: [102, 153, 255]
+    rgb_fraction: [0.4, 0.6, 1.0]
+    hex: "#6699FF"
+
+  - id: hdx_blue1
+    label: weak_protection
+    display_label: "-15 to -5"
+    lower: -15.0
+    lower_inclusive: true
+    upper: -5.0
+    upper_inclusive: true
+    rgb_255: [166, 191, 255]
+    rgb_fraction: [0.650980, 0.749020, 1.0]
+    hex: "#A6BFFF"
+
+  - id: hdx_gray0
+    label: neutral
+    display_label: "-5 to +5"
+    lower: -5.0
+    lower_inclusive: false
+    upper: 5.0
+    upper_inclusive: true
+    rgb_255: [89, 89, 89]
+    rgb_fraction: [0.349020, 0.349020, 0.349020]
+    hex: "#595959"
+
+  - id: hdx_red1
+    label: weak_deprotection
+    display_label: "> +5 to +15"
+    lower: 5.0
+    lower_inclusive: false
+    upper: 15.0
+    upper_inclusive: true
+    rgb_255: [255, 179, 179]
+    rgb_fraction: [1.0, 0.701961, 0.701961]
+    hex: "#FFB3B3"
+
+  - id: hdx_red2
+    label: moderate_deprotection
+    display_label: "> +15 to +30"
+    lower: 15.0
+    lower_inclusive: false
+    upper: 30.0
+    upper_inclusive: true
+    rgb_255: [242, 115, 115]
+    rgb_fraction: [0.949020, 0.450980, 0.450980]
+    hex: "#F27373"
+
+  - id: hdx_red3
+    label: strong_deprotection
+    display_label: "> +30"
+    lower: 30.0
+    lower_inclusive: false
+    upper: null
+    upper_inclusive: false
+    rgb_255: [217, 51, 51]
+    rgb_fraction: [0.850980, 0.2, 0.2]
+    hex: "#D93333"
+
+unmapped:
+  id: hdx_unmapped
+  label: no_coverage
+  display_label: "No coverage"
+  rgb_255: [168, 168, 168]
+  rgb_fraction: [0.658824, 0.658824, 0.658824]
+  hex: "#A8A8A8"

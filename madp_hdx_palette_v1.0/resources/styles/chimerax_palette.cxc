@@ -1,0 +1,17 @@
+# MADP HDX Palette v1.0
+#
+# ChimeraX does not require named-color registration for normal use.
+# Use these exact hexadecimal colors in generated .cxc files:
+#
+# hdx_blue3    #3366E6   strong protection
+# hdx_blue2    #6699FF   moderate protection
+# hdx_blue1    #A6BFFF   weak protection
+# hdx_gray0    #595959   neutral
+# hdx_red1     #FFB3B3   weak deprotection
+# hdx_red2     #F27373   moderate deprotection
+# hdx_red3     #D93333   strong deprotection
+# hdx_unmapped #A8A8A8   no coverage
+#
+# Example:
+# color /A:100-110 #3366E6 target c
+# color protein #A8A8A8 target c

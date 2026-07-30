@@ -540,7 +540,6 @@ def run_manifest(manifest_path: str | Path) -> Path:
                 cmd = [
                     str(comp.get("pymol", cfg.get("pymol", "pymol"))),
                     "-cq",
-                    "-r",
                     str(pymol_module),
                     "--",
                     str(structure_path),
@@ -552,7 +551,6 @@ def run_manifest(manifest_path: str | Path) -> Path:
                     "--out-png", str(structure_dir / "consensus_structure.png"),
                     "--session", str(structure_dir / "consensus_structure.pse"),
                     "--out-bfactor-pdb", str(structure_dir / "consensus_structure_bfactor.pdb"),
-                    "--out-chimerax", str(structure_dir / "consensus_structure.cxc"),
                 ]
                 if comp.get("chain_filter"):
                     cmd += ["--chain-filter", str(comp["chain_filter"])]

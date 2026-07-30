@@ -1,10 +1,9 @@
 from __future__ import annotations
-import argparse, math, os
-from pathlib import Path
+import argparse, os, math
 from collections import defaultdict
 from pathlib import Path
 from pymol import cmd, util
-from hdxms.colors import CHIMERAX_HEX, PYMOL_RGB, bin_name
+from hdxms.colors import PYMOL_RGB, bin_name
 from hdxms.io import load_hdx_csv, apply_offsets
 
 
@@ -141,38 +140,6 @@ def write_chimerax_script(output_path, structure_path, mapped):
 
     print(f"Wrote ChimeraX script: {output_path}")
 
-def _write_chimerax_script(output_path, structure_path, grouped):
-    output = Path(output_path).expanduser().resolve()
-    structure = Path(structure_path).expanduser().resolve()
-    output.parent.mkdir(parents=True, exist_ok=True)
-    lines = [
-        "# MADP HDX Palette v1.0",
-        f'open "{structure}"',
-        "hide",
-        "show protein cartoons",
-        f"color protein {CHIMERAX_HEX['hdx_unmapped']} target c",
-        "show nucleic atoms",
-        "style nucleic stick",
-        "color nucleic byelement",
-        "show ligand atoms",
-        "style ligand stick",
-        "color ligand byelement",
-    ]
-    for color_name in (
-        "hdx_blue3", "hdx_blue2", "hdx_blue1", "hdx_gray0",
-        "hdx_red1", "hdx_red2", "hdx_red3",
-    ):
-        for chain, residues in sorted(grouped.get(color_name, {}).items()):
-            chain_prefix = f"/{chain}" if chain else ""
-            for residue_range in _ranges(residues):
-                lines.append(
-                    f"color {chain_prefix}:{residue_range} "
-                    f"{CHIMERAX_HEX[color_name]} target c"
-                )
-    lines.extend(["set bgColor white", "lighting soft", "view protein"])
-    output.write_text("\n".join(lines) + "\n")
-
-
 def run(args):
     obj = os.path.splitext(os.path.basename(args.structure))[0]
     cmd.load(args.structure, obj)
@@ -209,30 +176,24 @@ def run(args):
             cmd.color(color, f"{obj} and chain {chain} and polymer.protein and resi {'+'.join(_ranges(residues))}")
     if not args.protein_only:
         cmd.show('sticks',f'{obj} and polymer.nucleic'); util.cbaw(f'{obj} and polymer.nucleic')
-        cmd.show('sticks',f'{obj} and organic'); util.cbag(f'{obj} and organic')
     cmd.set('cartoon_transparency',args.cartoon_trans); cmd.bg_color('white'); cmd.orient(f'{obj} and polymer.protein')
     if args.out_bfactor_pdb:
         cmd.alter(f'{obj} and polymer.protein','b=0.0')
         for (chain,residue),value in mapped.items(): cmd.alter(f'{obj} and chain {chain} and resi {residue}',f'b={float(value)}')
         cmd.save(args.out_bfactor_pdb,obj)
     # HDXMS_WRITE_CHIMERAX
-    out_chimerax = getattr(args, "out_chimerax", None)
-    if out_chimerax:
+    if args.out_chimerax:
         chimerax_structure = (
             args.out_bfactor_pdb
             if args.out_bfactor_pdb
             else args.structure
         )
         write_chimerax_script(
-            out_chimerax,
+            args.out_chimerax,
             chimerax_structure,
             mapped,
         )
 
-    out_chimerax = getattr(args, 'out_chimerax', None)
-    if out_chimerax:
-        structure_for_chimerax = args.out_bfactor_pdb or args.structure
-        _write_chimerax_script(out_chimerax, structure_for_chimerax, grouped)
     if args.session: cmd.save(args.session)
     if args.out_png:
         cmd.viewport(args.width,args.height); cmd.ray(); cmd.png(args.out_png,dpi=args.dpi)
