@@ -1,0 +1,48 @@
+# MADP HDX Palette v1.0
+open "/home/chris/hdxms-tools/pip6_consensus_structure_bfactor.pdb"
+hide
+show protein cartoons
+color protein #BFBFBF target c
+show nucleic atoms
+style nucleic stick
+color nucleic byelement
+show ligand atoms
+style ligand stick
+color ligand byelement
+color /B:309-321 #A6BFFF target c
+color /B:324-338 #A6BFFF target c
+color /C:794-812 #A6BFFF target c
+color /C:832 #A6BFFF target c
+color /C:891-896 #A6BFFF target c
+color /A:6-8 #595959 target c
+color /A:22-35 #595959 target c
+color /A:45-91 #595959 target c
+color /A:109-113 #595959 target c
+color /A:130-201 #595959 target c
+color /B:224-304 #595959 target c
+color /B:322-323 #595959 target c
+color /B:339-359 #595959 target c
+color /C:531-575 #595959 target c
+color /C:584-586 #595959 target c
+color /C:615-644 #595959 target c
+color /C:662-675 #595959 target c
+color /C:691-709 #595959 target c
+color /C:714-768 #595959 target c
+color /C:779-793 #595959 target c
+color /C:813-831 #595959 target c
+color /C:833-890 #595959 target c
+color /C:897-985 #595959 target c
+color /C:990-1011 #595959 target c
+color /A:9-21 #FFB3B3 target c
+color /A:39-44 #FFB3B3 target c
+color /A:117-129 #FFB3B3 target c
+color /C:587-614 #FFB3B3 target c
+color /C:676-677 #FFB3B3 target c
+color /C:710-713 #FFB3B3 target c
+color /C:689-690 #F27373 target c
+color /C:769 #F27373 target c
+color /C:678-688 #D93333 target c
+color /C:770-778 #D93333 target c
+set bgColor white
+lighting soft
+view protein
