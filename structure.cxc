@@ -1,0 +1,44 @@
+# MADP HDX Palette v1.0
+open "/home/chris/hdxms-tools/structure_bfactor.pdb"
+hide
+show protein cartoons
+color protein #BFBFBF target c
+show nucleic atoms
+style nucleic stick
+color nucleic byelement
+show ligand atoms
+style ligand stick
+color ligand byelement
+color /D:769-770 #3366E6 target c
+color /D:678-688 #6699FF target c
+color /D:710-713 #6699FF target c
+color /D:771-778 #6699FF target c
+color /B:324-338 #A6BFFF target c
+color /B:345 #A6BFFF target c
+color /C:459-472 #A6BFFF target c
+color /D:676-677 #A6BFFF target c
+color /D:689-709 #A6BFFF target c
+color /D:795-799 #A6BFFF target c
+color /D:811 #A6BFFF target c
+color /D:846-896 #A6BFFF target c
+color /A:1-35 #595959 target c
+color /A:39-113 #595959 target c
+color /A:117-214 #595959 target c
+color /B:224-304 #595959 target c
+color /B:309-323 #595959 target c
+color /B:339-344 #595959 target c
+color /B:346-359 #595959 target c
+color /C:387-458 #595959 target c
+color /C:473-486 #595959 target c
+color /D:531-575 #595959 target c
+color /D:584-642 #595959 target c
+color /D:662-675 #595959 target c
+color /D:714-764 #595959 target c
+color /D:779-794 #595959 target c
+color /D:800-810 #595959 target c
+color /D:812-845 #595959 target c
+color /D:897-985 #595959 target c
+color /D:990-1011 #595959 target c
+set bgColor white
+lighting soft
+view protein

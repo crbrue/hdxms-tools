@@ -48,8 +48,8 @@ COLORS: dict[str, HDXColor] = {
     "hdx_gray0": HDXColor(
         "hdx_gray0",
         "Neutral",
-        "#B4B4B4",
-        (180, 180, 180),
+        "#E6E6E6",
+        (230, 230, 230),
     ),
     "hdx_red1": HDXColor(
         "hdx_red1",
